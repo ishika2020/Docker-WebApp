@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <nav>
+		<menu>
+			<menuitem id="docker">
+				<a>Menu</a>
+				<menu>
+          <menuitem>
+            <a>Container Life cycle</a>
+              <menu>
+                <menuitem onclick="document.getElementById('1').style.display='block'"><a>Create Container</a></menuitem>
+                <menuitem onclick="document.getElementById('2').style.display='block'"><a>Run Container</a></menuitem>
+                <menuitem onclick="document.getElementById('3').style.display='block'"><a>Remove Container</a></menuitem>
+                <menuitem onclick="document.getElementById('4').style.display='block'"><a>Rename Container</a></menuitem>
+              </menu>
+          </menuitem>
+					<menuitem>
+						<a>Containers Ops </a>
+						  <menu>
+						    <menuitem onclick="document.getElementById('5').style.display='block'"><a>Start a Container</a></menuitem>
+							  <menuitem onclick="document.getElementById('6').style.display='block'"><a>Stop a Container</a></menuitem>
+								<menuitem onclick="document.getElementById('7').style.display='block'"><a>Restart a Container</a></menuitem>
+                <menuitem onclick="document.getElementById('8').style.display='block'"><a>Pause a Container</a></menuitem>
+                <menuitem onclick="document.getElementById('9').style.display='block'"><a>Unpause a Container</a></menuitem>
+                <menuitem onclick="document.getElementById('10').style.display='block'"><a>Kill a Container</a></menuitem>
+                <menuitem onclick="document.getElementById('11').style.display='block'"><a>Attach a Container</a></menuitem>
+                <menuitem onclick="document.getElementById('12').style.display='block'"><a>Docker copy</a></menuitem>
+                <menuitem onclick="document.getElementById('13').style.display='block'"><a>Docker execute</a></menuitem>
+							</menu>
+					</menuitem>
+          <menuitem>
+            <a>Docker Info</a>
+            <menu>
+              <menuitem onclick="document.getElementById('14').style.display='block'"><a>Running Container Info </a></menuitem>
+              <menuitem onclick="document.getElementById('15').style.display='block'"><a>Container logs</a></menuitem>
+              <menuitem onclick="document.getElementById('16').style.display='block'"><a>Docker inspect</a></menuitem>
+              <menuitem onclick="document.getElementById('17').style.display='block'"><a>Docker Port</a></menuitem>
+              <menuitem onclick="document.getElementById('18').style.display='block'"><a>Running Process Info</a></menuitem>
+              <menuitem onclick="document.getElementById('19').style.display='block'"><a>Resource Stats</a></menuitem>
+            </menu>
+          </menuitem>
+          <menuitem>
+            <a>Image Management</a>
+            <menu>
+              <menuitem onclick="document.getElementById('20').style.display='block'"><a>Show all Image</a></menuitem>
+              <menuitem onclick="document.getElementById('21').style.display='block'"><a>Docker build</a></menuitem>
+              <menuitem onclick="document.getElementById('22').style.display='block'"><a>Commit Image</a></menuitem>
+              <menuitem onclick="document.getElementById('23').style.display='block'"><a>Remove Image</a></menuitem>
+              <menuitem onclick="document.getElementById('24').style.display='block'"><a>Image History</a></menuitem>
+              <menuitem onclick="document.getElementById('25').style.display='block'"><a>Image Tags </a></menuitem>
+            </menu>
+          </menuitem>
+          <menuitem>
+            <a>Registry & Repository</a>
+            <menu>
+              <menuitem onclick="document.getElementById('26').style.display='block'"><a>Docker login</a></menuitem>
+              <menuitem onclick="document.getElementById('27').style.display='block'"><a>Docker logout</a></menuitem>
+              <menuitem onclick="document.getElementById('28').style.display='block'"><a>Docker search</a></menuitem>
+              <menuitem onclick="document.getElementById('29').style.display='block'"><a>Docker pull</a></menuitem>
+              <menuitem onclick="document.getElementById('30').style.display='block'"><a>Docker push</a></menuitem>
+            </menu>
+          </menuitem>
+        </menu>
+      </menuitem>  
+		</menu>
+	</nav>
+  <div class="modal-container" style="--m-background: transparent;">
+    <div class="modal-output" id="m1" >
+      <pre>
+        <h1 class="modal__title">Output</h1>
+      </pre>
+      <a href="http://192.168.1.12/menu.html" class="link-2"></a>
+    </div>
+  </div>
+  <div id="1" class="modal">
+    <form class="modal-content animate" action="http://192.168.1.12/cgi-bin/docker.py?op=create_container" onsubmit="create_container();" method="post">
+        <div class="container">
+          <label for="option" style="color:#75F ;"><b>Options</b></label>
+          <input type="text" placeholder="Enter options" name="option" required>
+        </div>
+        <div class="container">
+          <label for="container-name" style="color:#75F ;"><b>Container Name</b></label>
+          <input type="text" placeholder="Enter name of container" name="container-name" required>
+        </div>
+        <div class="container">
+          <label for="image" style="color:#75F ;" ><b>Image</b></label>
+          <input type="text" placeholder="Enter name of image" name="image" required>
+        </div> 
+        <div class="container-submit"> 
+          <button type="submit" >Submit</button>
+        </div>  
+      <div class="container">
+        <button type="button" onclick="document.getElementById('1').style.display='none'" class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+  
+  <div id="2" class="modal">
+    <form class="modal-content animate" action="http://192.168.1.12/cgi-bin/docker.py?op=run_container" method="post">
+        <div class="container">
+          <label for="option" style="color:#75F ;"><b>Options</b></label>
+          <input type="text" placeholder="Enter options" name="option">
+        </div>
+        <div class="container">
+          <label for="container-name" style="color:#75F ;"><b>Container Name</b></label>
+          <input type="text" placeholder="Enter name of container" name="container-name" required>
+        </div>
+        <div class="container-submit"> 
+          <button type="submit">Submit</button>
+        </div>  
+      <div class="container">
+        <button type="button" onclick="document.getElementById('2').style.display='none'" class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+  <div id="3" class="modal">
+    <form class="modal-content animate" action="javascript:void(0);" method="post">
+        <div class="container">
+          <label for="option" style="color:#75F ;"><b>Options</b></label>
+          <input type="text" placeholder="Enter options" name="option">
+        </div>
+        <div class="container">
+          <label for="container-name" style="color:#75F ;"><b>Container Name</b></label>
+          <input type="text" placeholder="Enter name of container" name="container-name" required>
+        </div> 
+        <div class="container-submit"> 
+          <button type="submit">Submit</button>
+        </div>  
+      <div class="container">
+        <button type="button" onclick="document.getElementById('1').style.display='none'" class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+  <div id="4" class="modal">
+    <form class="modal-content animate" action="javascript:void(0);" method="post">
+        <div class="container">
+          <label for="container-old-name" style="color:#75F ;"><b>Container old name</b></label>
+          <input type="text" placeholder="Enter container old name" name="container-old-name" required>
+        </div>
+        <div class="container">
+          <label for="container-new-name" style="color:#75F ;"><b>Container new Name</b></label>
+          <input type="text" placeholder="Enter new name" name="container-new-name" required>
+        </div>
+        <div class="container-submit"> 
+          <button type="submit">Submit</button>
+        </div>  
+      <div class="container">
+        <button type="button" onclick="document.getElementById('1').style.display='none'" class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+  <div id="5" class="modal">
+    <form class="modal-content animate" action="javascript:void(0);" method="post">
+        <div class="container">
+          <label for="option" style="color:#75F ;"><b>Options</b></label>
+          <input type="text" placeholder="Enter options" name="option">
+        </div>
+        <div class="container">
+          <label for="container-name" style="color:#75F ;"><b>Container Name</b></label>
+          <input type="text" placeholder="Enter name of container" name="container-name" required>
+        </div> 
+        <div class="container-submit"> 
+          <button type="submit">Submit</button>
+        </div>  
+      <div class="container">
+        <button type="button" onclick="document.getElementById('1').style.display='none'" class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+  <div id="6" class="modal">
+    <form class="modal-content animate" action="http://192.168.1.12/cgi-bin/docker.py?op=stop_container" method="post">
+        <div class="container">
+          <label for="option" style="color:#75F ;"><b>Options</b></label>
+          <input type="text" placeholder="Enter options" name="option">
+        </div>
+        <div class="container">
+          <label for="container-name" style="color:#75F ;"><b>Container Name</b></label>
+          <input type="text" placeholder="Enter name of container" name="container-name" required>
+        </div> 
+        <div class="container-submit"> 
+          <button type="submit">Submit</button>
+        </div>  
+      <div class="container">
+        <button type="button" onclick="document.getElementById('6').style.display='none'" class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+  <div id="7" class="modal">
+    <form class="modal-content animate" action="javascript:void(0);" method="post">
+        <div class="container">
+          <label for="option" style="color:#75F ;"><b>Options</b></label>
+          <input type="text" placeholder="Enter options" name="option">
+        </div>
+        <div class="container">
+          <label for="container-name" style="color:#75F ;"><b>Container Name</b></label>
+          <input type="text" placeholder="Enter name of container" name="container-name" required>
+        </div> 
+        <div class="container-submit"> 
+          <button type="submit">Submit</button>
+        </div>  
+      <div class="container">
+        <button type="button" onclick="document.getElementById('1').style.display='none'" class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+  <div id="8" class="modal">
+    <form class="modal-content animate" action="javascript:void(0);" method="post">
+        <div class="container">
+          <label for="container-name" style="color:#75F ;"><b>Container Name</b></label>
+          <input type="text" placeholder="Enter name of container" name="container-name" required>
+        </div> 
+        <div class="container-submit"> 
+          <button type="submit">Submit</button>
+        </div>  
+      <div class="container">
+        <button type="button" onclick="document.getElementById('1').style.display='none'" class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+  <div id="9" class="modal">
+    <form class="modal-content animate" action="javascript:void(0);" method="post">
+        <div class="container">
+          <label for="container-name" style="color:#75F ;"><b>Container Name</b></label>
+          <input type="text" placeholder="Enter name of container" name="container-name" required>
+        </div> 
+        <div class="container-submit"> 
+          <button type="submit">Submit</button>
+        </div>  
+      <div class="container">
+        <button type="button" onclick="document.getElementById('1').style.display='none'" class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+  <div id="10" class="modal">
+    <form class="modal-content animate" action="javascript:void(0);" method="post">
+        <div class="container">
+          <label for="container-name" style="color:#75F ;"><b>Container Name</b></label>
+          <input type="text" placeholder="Enter name of container" name="container-name" required>
+        </div> 
+        <div class="container-submit"> 
+          <button type="submit">Submit</button>
+        </div>  
+      <div class="container">
+        <button type="button" onclick="document.getElementById('1').style.display='none'" class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+  <div id="11" class="modal">
+    <form class="modal-content animate" action="javascript:void(0);" method="post">
+        <div class="container">
+          <label for="option" style="color:#75F ;"><b>Options</b></label>
+          <input type="text" placeholder="Enter options" name="option">
+        </div>
+        <div class="container">
+          <label for="container-name" style="color:#75F ;"><b>Container Name</b></label>
+          <input type="text" placeholder="Enter name of container" name="container-name" required>
+        </div> 
+        <div class="container-submit"> 
+          <button type="submit">Submit</button>
+        </div>  
+      <div class="container">
+        <button type="button" onclick="document.getElementById('1').style.display='none'" class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+  <div id="12" class="modal">
+    <form class="modal-content animate" action="http://192.168.1.12/cgi-bin/docker.py?op=docker_copy" method="post">
+        <div class="container">
+          <label for="option" style="color:#75F ;"><b>Options</b></label>
+          <input type="text" placeholder="Enter options" name="option">
+        </div>
+        <div class="container">
+          <label for="container-name" style="color:#75F ;"><b>Container Name</b></label>
+          <input type="text" placeholder="Enter name of container" name="container-name" required>
+        </div>
+        <div class="container">
+            <label for="src-path" style="color:#75F ;"><b>Source path</b></label>
+            <input type="text" placeholder="Enter src path" name="src-path" required>
+        </div> 
+        <div class="container">
+            <label for="dest-path" style="color:#75F ;"><b>dest path</b></label>
+            <input type="text" placeholder="Enter dest path" name="dest-path" required>
+        </div>
+        <div class="container-submit"> 
+          <button type="submit">Submit</button>
+        </div>  
+      <div class="container">
+        <button type="button" onclick="document.getElementById('12').style.display='none'" class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+  <div id="13" class="modal">
+    <form class="modal-content animate" action="javascript:void(0);" method="post">
+        <div class="container">
+          <label for="option" style="color:#75F ;"><b>Options</b></label>
+          <input type="text" placeholder="Enter options" name="option" required>
+        </div>
+        <div class="container">
+          <label for="container-name" style="color:#75F ;"><b>Container Name</b></label>
+          <input type="text" placeholder="Enter name of container" name="container-name" required>
+        </div>
+        <div class="container">
+          <label for="image" style="color:#75F ;" ><b>Image</b></label>
+          <input type="text" placeholder="Enter name of image" name="image" required>
+        </div> 
+        <div class="container-submit"> 
+          <button type="submit">Submit</button>
+        </div>  
+      <div class="container">
+        <button type="button" onclick="document.getElementById('1').style.display='none'" class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+  <div id="14" class="modal">
+    <form class="modal-content animate" action="http://192.168.1.12/cgi-bin/docker.py?op=running_container_info" method="post">
+        <div class="container">
+          <label for="option" style="color:#75F ;"><b>Options</b></label>
+          <input type="text" placeholder="Enter options" name="option">
+        </div>
+        <div class="container-submit"> 
+          <button type="submit">Submit</button>
+        </div>  
+      <div class="container">
+        <button type="button" onclick="document.getElementById('14').style.display='none'" class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+  <div id="15" class="modal">
+    <form class="modal-content animate" action="javascript:void(0);" method="post">
+        <div class="container">
+          <label for="option" style="color:#75F ;"><b>Options</b></label>
+          <input type="text" placeholder="Enter options" name="option" required>
+        </div>
+        <div class="container">
+          <label for="container-name" style="color:#75F ;"><b>Container Name</b></label>
+          <input type="text" placeholder="Enter name of container" name="container-name" required>
+        </div>
+        <div class="container">
+          <label for="image" style="color:#75F ;" ><b>Image</b></label>
+          <input type="text" placeholder="Enter name of image" name="image" required>
+        </div> 
+        <div class="container-submit"> 
+          <button type="submit">Submit</button>
+        </div>  
+      <div class="container">
+        <button type="button" onclick="document.getElementById('1').style.display='none'" class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+  <div id="16" class="modal">
+    <form class="modal-content animate" action="javascript:void(0);" method="post">
+        <div class="container">
+          <label for="option" style="color:#75F ;"><b>Options</b></label>
+          <input type="text" placeholder="Enter options" name="option" required>
+        </div>
+        <div class="container">
+          <label for="container-name" style="color:#75F ;"><b>Container Name</b></label>
+          <input type="text" placeholder="Enter name of container" name="container-name" required>
+        </div>
+        <div class="container">
+          <label for="image" style="color:#75F ;" ><b>Image</b></label>
+          <input type="text" placeholder="Enter name of image" name="image" required>
+        </div> 
+        <div class="container-submit"> 
+          <button type="submit">Submit</button>
+        </div>  
+      <div class="container">
+        <button type="button" onclick="document.getElementById('1').style.display='none'" class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+  <div id="17" class="modal">
+    <form class="modal-content animate" action="javascript:void(0);" method="post">
+        <div class="container">
+          <label for="option" style="color:#75F ;"><b>Options</b></label>
+          <input type="text" placeholder="Enter options" name="option" required>
+        </div>
+        <div class="container">
+          <label for="container-name" style="color:#75F ;"><b>Container Name</b></label>
+          <input type="text" placeholder="Enter name of container" name="container-name" required>
+        </div>
+        <div class="container">
+          <label for="image" style="color:#75F ;" ><b>Image</b></label>
+          <input type="text" placeholder="Enter name of image" name="image" required>
+        </div> 
+        <div class="container-submit"> 
+          <button type="submit">Submit</button>
+        </div>  
+      <div class="container">
+        <button type="button" onclick="document.getElementById('1').style.display='none'" class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+  <div id="18" class="modal">
+    <form class="modal-content animate" action="javascript:void(0);" method="post">
+        <div class="container">
+          <label for="option" style="color:#75F ;"><b>Options</b></label>
+          <input type="text" placeholder="Enter options" name="option" required>
+        </div>
+        <div class="container">
+          <label for="container-name" style="color:#75F ;"><b>Container Name</b></label>
+          <input type="text" placeholder="Enter name of container" name="container-name" required>
+        </div>
+        <div class="container">
+          <label for="image" style="color:#75F ;" ><b>Image</b></label>
+          <input type="text" placeholder="Enter name of image" name="image" required>
+        </div> 
+        <div class="container-submit"> 
+          <button type="submit">Submit</button>
+        </div>  
+      <div class="container">
+        <button type="button" onclick="document.getElementById('1').style.display='none'" class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+  <div id="19" class="modal">
+    <form class="modal-content animate" action="javascript:void(0);" method="post">
+        <div class="container">
+          <label for="option" style="color:#75F ;"><b>Options</b></label>
+          <input type="text" placeholder="Enter options" name="option" required>
+        </div>
+        <div class="container">
+          <label for="container-name" style="color:#75F ;"><b>Container Name</b></label>
+          <input type="text" placeholder="Enter name of container" name="container-name" required>
+        </div>
+        <div class="container">
+          <label for="image" style="color:#75F ;" ><b>Image</b></label>
+          <input type="text" placeholder="Enter name of image" name="image" required>
+        </div> 
+        <div class="container-submit"> 
+          <button type="submit">Submit</button>
+        </div>  
+      <div class="container">
+        <button type="button" onclick="document.getElementById('1').style.display='none'" class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+  <div id="20" class="modal">
+    <form class="modal-content animate" action="http://192.168.1.12/cgi-bin/docker.py?op=all_images" method="post">
+        <div class="container">
+          <label for="option" style="color:#75F ;"><b>Options</b></label>
+          <input type="text" placeholder="Enter options" name="option">
+        </div>
+        <div class="container-submit"> 
+          <button type="submit">Submit</button>
+        </div>  
+      <div class="container">
+        <button type="button" onclick="document.getElementById('20').style.display='none'" class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+  <div id="21" class="modal">
+    <form class="modal-content animate" action="javascript:void(0);" method="post">
+        <div class="container">
+          <label for="option" style="color:#75F ;"><b>Options</b></label>
+          <input type="text" placeholder="Enter options" name="option" required>
+        </div>
+        <div class="container">
+          <label for="container-name" style="color:#75F ;"><b>Container Name</b></label>
+          <input type="text" placeholder="Enter name of container" name="container-name" required>
+        </div>
+        <div class="container">
+          <label for="image" style="color:#75F ;" ><b>Image</b></label>
+          <input type="text" placeholder="Enter name of image" name="image" required>
+        </div> 
+        <div class="container-submit"> 
+          <button type="submit">Submit</button>
+        </div>  
+      <div class="container">
+        <button type="button" onclick="document.getElementById('1').style.display='none'" class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+  <div id="22" class="modal">
+    <form class="modal-content animate" action="javascript:void(0);" method="post">
+        <div class="container">
+          <label for="option" style="color:#75F ;"><b>Options</b></label>
+          <input type="text" placeholder="Enter options" name="option" required>
+        </div>
+        <div class="container">
+          <label for="container-name" style="color:#75F ;"><b>Container Name</b></label>
+          <input type="text" placeholder="Enter name of container" name="container-name" required>
+        </div>
+        <div class="container">
+          <label for="image" style="color:#75F ;" ><b>Image</b></label>
+          <input type="text" placeholder="Enter name of image" name="image" required>
+        </div> 
+        <div class="container-submit"> 
+          <button type="submit">Submit</button>
+        </div>  
+      <div class="container">
+        <button type="button" onclick="document.getElementById('1').style.display='none'" class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+  <div id="23" class="modal">
+    <form class="modal-content animate" action="javascript:void(0);" method="post">
+        <div class="container">
+          <label for="option" style="color:#75F ;"><b>Options</b></label>
+          <input type="text" placeholder="Enter options" name="option" required>
+        </div>
+        <div class="container">
+          <label for="container-name" style="color:#75F ;"><b>Container Name</b></label>
+          <input type="text" placeholder="Enter name of container" name="container-name" required>
+        </div>
+        <div class="container">
+          <label for="image" style="color:#75F ;" ><b>Image</b></label>
+          <input type="text" placeholder="Enter name of image" name="image" required>
+        </div> 
+        <div class="container-submit"> 
+          <button type="submit">Submit</button>
+        </div>  
+      <div class="container">
+        <button type="button" onclick="document.getElementById('1').style.display='none'" class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+  <div id="24" class="modal">
+    <form class="modal-content animate" action="javascript:void(0);" method="post">
+        <div class="container">
+          <label for="option" style="color:#75F ;"><b>Options</b></label>
+          <input type="text" placeholder="Enter options" name="option" required>
+        </div>
+        <div class="container">
+          <label for="container-name" style="color:#75F ;"><b>Container Name</b></label>
+          <input type="text" placeholder="Enter name of container" name="container-name" required>
+        </div>
+        <div class="container">
+          <label for="image" style="color:#75F ;" ><b>Image</b></label>
+          <input type="text" placeholder="Enter name of image" name="image" required>
+        </div> 
+        <div class="container-submit"> 
+          <button type="submit">Submit</button>
+        </div>  
+      <div class="container">
+        <button type="button" onclick="document.getElementById('1').style.display='none'" class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+  <div id="25" class="modal">
+    <form class="modal-content animate" action="javascript:void(0);" method="post">
+        <div class="container">
+          <label for="option" style="color:#75F ;"><b>Options</b></label>
+          <input type="text" placeholder="Enter options" name="option" required>
+        </div>
+        <div class="container">
+          <label for="container-name" style="color:#75F ;"><b>Container Name</b></label>
+          <input type="text" placeholder="Enter name of container" name="container-name" required>
+        </div>
+        <div class="container">
+          <label for="image" style="color:#75F ;" ><b>Image</b></label>
+          <input type="text" placeholder="Enter name of image" name="image" required>
+        </div> 
+        <div class="container-submit"> 
+          <button type="submit">Submit</button>
+        </div>  
+      <div class="container">
+        <button type="button" onclick="document.getElementById('1').style.display='none'" class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+  <div id="26" class="modal">
+    <form class="modal-content animate" action="javascript:void(0);" method="post">
+        <div class="container">
+          <label for="option" style="color:#75F ;"><b>Options</b></label>
+          <input type="text" placeholder="Enter options" name="option" required>
+        </div>
+        <div class="container">
+          <label for="container-name" style="color:#75F ;"><b>Container Name</b></label>
+          <input type="text" placeholder="Enter name of container" name="container-name" required>
+        </div>
+        <div class="container">
+          <label for="image" style="color:#75F ;" ><b>Image</b></label>
+          <input type="text" placeholder="Enter name of image" name="image" required>
+        </div> 
+        <div class="container-submit"> 
+          <button type="submit">Submit</button>
+        </div>  
+      <div class="container">
+        <button type="button" onclick="document.getElementById('1').style.display='none'" class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+  <div id="27" class="modal">
+    <form class="modal-content animate" action="javascript:void(0);" method="post">
+        <div class="container">
+          <label for="option" style="color:#75F ;"><b>Options</b></label>
+          <input type="text" placeholder="Enter options" name="option" required>
+        </div>
+        <div class="container">
+          <label for="container-name" style="color:#75F ;"><b>Container Name</b></label>
+          <input type="text" placeholder="Enter name of container" name="container-name" required>
+        </div>
+        <div class="container">
+          <label for="image" style="color:#75F ;" ><b>Image</b></label>
+          <input type="text" placeholder="Enter name of image" name="image" required>
+        </div> 
+        <div class="container-submit"> 
+          <button type="submit">Submit</button>
+        </div>  
+      <div class="container">
+        <button type="button" onclick="document.getElementById('1').style.display='none'" class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+  <div id="28" class="modal">
+    <form class="modal-content animate" action="javascript:void(0);" method="post">
+        <div class="container">
+          <label for="option" style="color:#75F ;"><b>Options</b></label>
+          <input type="text" placeholder="Enter options" name="option" required>
+        </div>
+        <div class="container">
+          <label for="container-name" style="color:#75F ;"><b>Container Name</b></label>
+          <input type="text" placeholder="Enter name of container" name="container-name" required>
+        </div>
+        <div class="container">
+          <label for="image" style="color:#75F ;" ><b>Image</b></label>
+          <input type="text" placeholder="Enter name of image" name="image" required>
+        </div> 
+        <div class="container-submit"> 
+          <button type="submit">Submit</button>
+        </div>  
+      <div class="container">
+        <button type="button" onclick="document.getElementById('1').style.display='none'" class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+  <div id="29" class="modal">
+    <form class="modal-content animate" action="javascript:void(0);" method="post">
+        <div class="container">
+          <label for="option" style="color:#75F ;"><b>Options</b></label>
+          <input type="text" placeholder="Enter options" name="option" required>
+        </div>
+        <div class="container">
+          <label for="container-name" style="color:#75F ;"><b>Container Name</b></label>
+          <input type="text" placeholder="Enter name of container" name="container-name" required>
+        </div>
+        <div class="container">
+          <label for="image" style="color:#75F ;" ><b>Image</b></label>
+          <input type="text" placeholder="Enter name of image" name="image" required>
+        </div> 
+        <div class="container-submit"> 
+          <button type="submit">Submit</button>
+        </div>  
+      <div class="container">
+        <button type="button" onclick="document.getElementById('1').style.display='none'" class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+  <div id="30" class="modal">
+    <form class="modal-content animate" action="javascript:void(0);" method="post">
+        <div class="container">
+          <label for="option" style="color:#75F ;"><b>Options</b></label>
+          <input type="text" placeholder="Enter options" name="option" required>
+        </div>
+        <div class="container">
+          <label for="container-name" style="color:#75F ;"><b>Container Name</b></label>
+          <input type="text" placeholder="Enter name of container" name="container-name" required>
+        </div>
+        <div class="container">
+          <label for="image" style="color:#75F ;" ><b>Image</b></label>
+          <input type="text" placeholder="Enter name of image" name="image" required>
+        </div> 
+        <div class="container-submit"> 
+          <button type="submit">Submit</button>
+        </div>  
+      <div class="container">
+        <button type="button" onclick="document.getElementById('1').style.display='none'" class="cancelbtn">Cancel</button>
+      </div>
+    </form>
+  </div>
+  <script src="main.js" ></script> 
+</body>
+</html>
